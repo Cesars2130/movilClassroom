@@ -5,6 +5,7 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.*
 import androidx.datastore.preferences.preferencesDataStore
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.map
 
 private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "user_prefs")
 
@@ -27,6 +28,12 @@ class UserPreferences(private val context: Context) {
             prefs[USER_ROLE] = role
             prefs[TOKEN] = token
         }
+    }
+
+    // Obtener el ID del usuario
+    suspend fun getUserId(): Int? {
+        val prefs = context.dataStore.data.first()
+        return prefs[USER_ID]
     }
 
     // Obtener los datos del usuario

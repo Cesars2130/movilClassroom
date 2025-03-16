@@ -37,7 +37,7 @@ fun RegisterUi(
     LaunchedEffect(registrationResult) {
         when (registrationResult) {
             is RegistrationResult.Success -> {
-                navController.navigate("view_tasks")
+                navController.navigate("login")
                 viewModel.resetRegistrationResult()
                 viewModel.resetRegistrationForm()
             }

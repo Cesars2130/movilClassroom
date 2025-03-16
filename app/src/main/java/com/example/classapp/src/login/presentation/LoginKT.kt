@@ -125,8 +125,8 @@ fun LoginUi(viewModel: LoginViewModel, navController: NavController) {
                         viewModel.loginUser(
                             email = email,
                             password = password,
-                            onSuccess = { navController.navigate("home") },  // 🚀 Redirigir a la pantalla principal
-                            onError = { errorMessage -> println("Error: $errorMessage") } // 🚨 Manejar errores
+                            onSuccess = { navController.navigate("view_classes") },
+                            onError = { errorMessage -> println("Error: $errorMessage") }
                         )
                     },
                     enabled = email.isNotEmpty() && password.isNotEmpty(),
@@ -137,7 +137,6 @@ fun LoginUi(viewModel: LoginViewModel, navController: NavController) {
                 ) {
                     Text(text = "Ingresar")
                 }
-                // Botón de "Crear Cuenta"
                 OutlinedButton(
                     onClick = { navController.navigate("register") },
                     modifier = Modifier
@@ -155,13 +154,13 @@ fun LoginUi(viewModel: LoginViewModel, navController: NavController) {
         text = "Taskroom",
         color = Color.White,
         style = TextStyle(
-            fontSize = 38.sp, // Tamaño más grande
-            fontWeight = FontWeight.ExtraBold, // Texto más grueso
+            fontSize = 38.sp,
+            fontWeight = FontWeight.ExtraBold,
             textAlign = TextAlign.Center,
-            shadow = Shadow( // Aplicar sombra correctamente
+            shadow = Shadow(
                 color = Color.Black,
-                offset = Offset(4f, 4f), // Desplazamiento de la sombra
-                blurRadius = 8f // Difuminado de la sombra
+                offset = Offset(4f, 4f),
+                blurRadius = 8f
             )
         ),
         modifier = Modifier
@@ -170,10 +169,9 @@ fun LoginUi(viewModel: LoginViewModel, navController: NavController) {
     )
 
 
-    // Navegación al cambiar el estado de loginSuccess
     LaunchedEffect(loginSuccess) {
         if (loginSuccess == true) {
-            navController.navigate("")
+            navController.navigate("view_classes")
         }
         viewModel.resetLoginState()
     }
